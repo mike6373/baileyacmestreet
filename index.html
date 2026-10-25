@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bailey Bunny on Acme Street!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TITLE SCREEN -->
+<div id="titleScreen" class="title-screen">
+    <div class="title-content">
+
+        <div class="title-character">
+            <img src="player.png" alt="Bailey Bunny">
+        </div>
+
+        <h1>Bailey Bunny<br>on Acme Street!</h1>
+
+        <p class="subtitle">A chaotic endless runner adventure!</p>
+
+        <div class="story">
+            <p>
+                Bailey Bunny decided to go out on a jog because he ate a
+                lot of brownies and pizza! But as he was jogging all around
+                town, he found Acme Street, where people just love to roll
+                around bombs on the street without a care in the world.
+            </p>
+
+            <p>
+                Also, a bunch of money is lying on the ground; I suppose
+                that people don't care about their wallets anymore in this
+                town.
+            </p>
+
+            <p>
+                It's YOUR job to ensure that Bailey doesn't get blown up
+                by any of the bombs on the road. If you do find money,
+                like gold coins on the road, just take them; I'm sure no
+                one will stop you.
+            </p>
+
+            <p class="good-luck">Good luck!</p>
+        </div>
+
+        <button id="startButton" class="start-button" onclick="startGame()">
+            ▶ START GAME
+        </button>
+<a
+    class="goofbox-button"
+    href="https://mike6373.github.io/goofboxtv/"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+    📺 Watch Classic Cartoons 24/7
+</a>
+
+        <p class="controls-hint">
+            Use the left and right buttons to dodge bombs and collect coins!
+        </p>
+
+    </div>
+</div>
+
+<!-- GAME SCREEN -->
+<div class="game" id="gameScreen" style="display: none;">
+
+    <div class="road"></div>
+
+    <div class="ui">
+        <div>🏆 <span id="score">0</span></div>
+        <div>🪙 <span id="coins">0</span></div>
+        <div>⚡ <span id="speed">1</span></div>
+    </div>
+
+    <div id="player" class="player">
+        <img src="player.png" alt="Bailey Bunny" class="player-image">
+    </div>
+
+    <div id="gameover" class="gameover">
+        <h1>💥 Game Over</h1>
+        <h2 id="final"></h2>
+        <br>
+        <button onclick="location.reload()">Play Again</button>
+    </div>
+
+    <div class="controls">
+        <button onclick="moveLeft()">⬅️</button>
+        <button onclick="moveRight()">➡️</button>
+    </div>
+
+</div>
+
+<script>
+function startGame() {
+    const button = document.getElementById("startButton");
+
+    button.disabled = true;
+    document.getElementById("titleScreen").style.display = "none";
+    document.getElementById("gameScreen").style.display = "block";
+
+    // Load the game logic only after the player starts.
+    const script = document.createElement("script");
+    script.src = "script.js";
+    script.onerror = function () {
+        alert("Couldn't load script.js. Please check that the file exists.");
+        location.reload();
+    };
+    document.body.appendChild(script);
+}
+</script>
+
+</body>
+</html>

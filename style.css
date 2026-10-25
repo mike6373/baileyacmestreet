@@ -1,0 +1,364 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #111827;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* TITLE SCREEN */
+
+.title-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px;
+    overflow-y: auto;
+    background:
+        radial-gradient(circle at top, #fef08a 0%, transparent 42%),
+        linear-gradient(145deg, #38bdf8, #2563eb 65%, #312e81);
+}
+
+.title-content {
+    width: 100%;
+    max-width: 620px;
+    margin: auto;
+    padding: 28px;
+    text-align: center;
+    color: #1f2937;
+    background: #fffdf2;
+    border: 5px solid #facc15;
+    border-radius: 26px;
+    box-shadow: 0 12px 0 #1e3a8a, 0 18px 35px #0006;
+}
+
+.title-character {
+    width: 115px;
+    height: 115px;
+    margin: 0 auto 12px;
+    padding: 5px;
+    background: #fef08a;
+    border: 3px solid #f59e0b;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.title-character img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.title-content h1 {
+    color: #dc2626;
+    font-size: clamp(30px, 6vw, 48px);
+    line-height: 1.08;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-shadow: 2px 3px 0 #facc15;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    font-size: 16px;
+    font-weight: bold;
+    color: #2563eb;
+    margin-bottom: 18px;
+}
+
+.story {
+    padding: 18px;
+    background: #f3f4f6;
+    border: 2px solid #d1d5db;
+    border-radius: 15px;
+    text-align: left;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.story p {
+    margin-bottom: 12px;
+}
+
+.story p:last-child {
+    margin-bottom: 0;
+}
+
+.story .good-luck {
+    text-align: center;
+    color: #dc2626;
+    font-size: 23px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.start-button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 17px 20px;
+    border: 3px solid #15803d;
+    border-radius: 14px;
+    background: #22c55e;
+    color: white;
+    font-size: 22px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #166534;
+    transition: transform 0.12s, background 0.12s;
+}
+
+.start-button:hover {
+    background: #16a34a;
+    transform: translateY(-2px);
+}
+
+.start-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #166534;
+}
+
+.start-button:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+.controls-hint {
+    margin-top: 16px;
+    color: #4b5563;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* GAME */
+
+.game {
+    position: relative;
+    width: 420px;
+    height: 750px;
+    max-width: 100vw;
+    max-height: 100dvh;
+    background: #374151;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 4px solid #1f2937;
+}
+
+/* UI */
+
+.ui {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 100;
+    pointer-events: none;
+}
+
+/* ROAD */
+
+.road {
+    position: absolute;
+    inset: 0;
+    background: #2d3748;
+}
+
+.line {
+    position: absolute;
+    width: 8px;
+    height: 80px;
+    background: white;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.line2 {
+    left: 33.3%;
+}
+
+.line3 {
+    left: 66.6%;
+}
+
+/* PLAYER */
+
+.player {
+    position: absolute;
+    bottom: 100px;
+    width: 70px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    transition: left 0.15s ease;
+}
+
+.player-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* COINS AND OBSTACLES */
+
+.coin,
+.obstacle {
+    position: absolute;
+    font-size: 50px;
+    z-index: 5;
+}
+
+/* GAME OVER */
+
+.gameover {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+    z-index: 999;
+}
+
+.gameover h1 {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.gameover h2 {
+    font-size: 24px;
+    margin: 5px 0;
+}
+
+.gameover button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    background: #22c55e;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* CONTROLS */
+
+.controls {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 200;
+}
+
+.controls button {
+    width: 80px;
+    height: 60px;
+    font-size: 30px;
+    border: none;
+    border-radius: 15px;
+    background: #4f46e5;
+    color: white;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.controls button:hover {
+    background: #6366f1;
+}
+
+.controls button:active {
+    transform: scale(0.95);
+}
+
+/* SMALL SCREENS */
+
+@media (max-width: 420px) {
+    .game {
+        border-radius: 0;
+        border-width: 2px;
+    }
+
+    .title-content {
+        padding: 20px;
+    }
+
+    .story {
+        padding: 14px;
+        font-size: 14px;
+    }
+}
+
+@media (max-height: 750px) {
+    .game {
+        height: 100dvh;
+    }
+
+    .title-screen {
+        align-items: flex-start;
+    }
+
+    .title-content {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .title-character {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* GOOFBOX CARTOON BUTTON */
+
+.goofbox-button {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 10px 16px;
+    background: #f97316;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    border: 2px solid #c2410c;
+    border-radius: 10px;
+    box-shadow: 0 3px 0 #9a3412;
+    transition: background 0.15s, transform 0.15s;
+}
+
+.goofbox-button:hover {
+    background: #ea580c;
+    transform: translateY(-2px);
+}
+
+.goofbox-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #9a3412;
+}
